@@ -1,0 +1,251 @@
+{
+  "threshold_optimization": {
+    "optimal_threshold": 0.25,
+    "by_threshold": [
+      {
+        "threshold": 0.05,
+        "precision": 0.1144,
+        "recall": 1.0,
+        "f1_yes": 0.2054,
+        "f1_macro": 0.1242,
+        "accuracy": 0.1317,
+        "n_pred_yes": 201
+      },
+      {
+        "threshold": 0.1,
+        "precision": 0.3279,
+        "recall": 0.8696,
+        "f1_yes": 0.4762,
+        "f1_macro": 0.6706,
+        "accuracy": 0.7854,
+        "n_pred_yes": 61
+      },
+      {
+        "threshold": 0.15,
+        "precision": 0.4706,
+        "recall": 0.6957,
+        "f1_yes": 0.5614,
+        "f1_macro": 0.7453,
+        "accuracy": 0.878,
+        "n_pred_yes": 34
+      },
+      {
+        "threshold": 0.2,
+        "precision": 0.6364,
+        "recall": 0.6087,
+        "f1_yes": 0.6222,
+        "f1_macro": 0.7878,
+        "accuracy": 0.9171,
+        "n_pred_yes": 22
+      },
+      {
+        "threshold": 0.25,
+        "precision": 0.7222,
+        "recall": 0.5652,
+        "f1_yes": 0.6341,
+        "f1_macro": 0.7967,
+        "accuracy": 0.9268,
+        "n_pred_yes": 18
+      },
+      {
+        "threshold": 0.3,
+        "precision": 0.6875,
+        "recall": 0.4783,
+        "f1_yes": 0.5641,
+        "f1_macro": 0.7591,
+        "accuracy": 0.9171,
+        "n_pred_yes": 16
+      },
+      {
+        "threshold": 0.35,
+        "precision": 0.6875,
+        "recall": 0.4783,
+        "f1_yes": 0.5641,
+        "f1_macro": 0.7591,
+        "accuracy": 0.9171,
+        "n_pred_yes": 16
+      },
+      {
+        "threshold": 0.4,
+        "precision": 0.6923,
+        "recall": 0.3913,
+        "f1_yes": 0.5,
+        "f1_macro": 0.7259,
+        "accuracy": 0.9122,
+        "n_pred_yes": 13
+      },
+      {
+        "threshold": 0.45,
+        "precision": 0.7,
+        "recall": 0.3043,
+        "f1_yes": 0.4242,
+        "f1_macro": 0.6869,
+        "accuracy": 0.9073,
+        "n_pred_yes": 10
+      },
+      {
+        "threshold": 0.5,
+        "precision": 0.7143,
+        "recall": 0.2174,
+        "f1_yes": 0.3333,
+        "f1_macro": 0.6404,
+        "accuracy": 0.9024,
+        "n_pred_yes": 7
+      }
+    ],
+    "best_f1_yes": {
+      "threshold": 0.25,
+      "f1_yes": 0.6341,
+      "precision": 0.7222,
+      "recall": 0.5652
+    },
+    "best_f1_macro": {
+      "threshold": 0.25,
+      "f1_yes": 0.6341,
+      "precision": 0.7222,
+      "recall": 0.5652
+    }
+  },
+  "calibration": {
+    "GB": {
+      "ECE": 0.0614,
+      "MCE": 0.5429
+    },
+    "LR-C": {
+      "ECE": 0.0294,
+      "MCE": 0.3471
+    },
+    "B3": {
+      "ECE": 0.1836,
+      "MCE": 0.4125
+    }
+  },
+  "per_category": [
+    {
+      "category": "Entertainment",
+      "n": 7,
+      "n_yes": 0,
+      "yes_pct": 0.0,
+      "auc": NaN,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1_yes": 0.0,
+      "accuracy": 1.0,
+      "tn": 7,
+      "fp": 0,
+      "fn": 0,
+      "tp": 0
+    },
+    {
+      "category": "Finance",
+      "n": 65,
+      "n_yes": 11,
+      "yes_pct": 16.9,
+      "auc": 0.879,
+      "precision": 0.9,
+      "recall": 0.818,
+      "f1_yes": 0.857,
+      "accuracy": 0.954,
+      "tn": 53,
+      "fp": 1,
+      "fn": 2,
+      "tp": 9
+    },
+    {
+      "category": "Other",
+      "n": 14,
+      "n_yes": 0,
+      "yes_pct": 0.0,
+      "auc": NaN,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1_yes": 0.0,
+      "accuracy": 0.929,
+      "tn": 13,
+      "fp": 1,
+      "fn": 0,
+      "tp": 0
+    },
+    {
+      "category": "Politics",
+      "n": 45,
+      "n_yes": 4,
+      "yes_pct": 8.9,
+      "auc": 0.793,
+      "precision": 1.0,
+      "recall": 0.25,
+      "f1_yes": 0.4,
+      "accuracy": 0.933,
+      "tn": 41,
+      "fp": 0,
+      "fn": 3,
+      "tp": 1
+    },
+    {
+      "category": "Sports",
+      "n": 42,
+      "n_yes": 5,
+      "yes_pct": 11.9,
+      "auc": 0.959,
+      "precision": 0.5,
+      "recall": 0.2,
+      "f1_yes": 0.286,
+      "accuracy": 0.881,
+      "tn": 36,
+      "fp": 1,
+      "fn": 4,
+      "tp": 1
+    },
+    {
+      "category": "Tech",
+      "n": 29,
+      "n_yes": 2,
+      "yes_pct": 6.9,
+      "auc": 0.926,
+      "precision": 0.5,
+      "recall": 1.0,
+      "f1_yes": 0.667,
+      "accuracy": 0.931,
+      "tn": 25,
+      "fp": 2,
+      "fn": 0,
+      "tp": 2
+    }
+  ],
+  "feature_importance_top10_mdi": {
+    "precio_dia_6": 0.2772,
+    "precio_dia_7": 0.1202,
+    "precio_fin": 0.0896,
+    "precio_dia_4": 0.0644,
+    "precio_media": 0.0608,
+    "volatilidad_retornos": 0.0557,
+    "precio_dia_5": 0.0556,
+    "precio_std": 0.0515,
+    "precio_tendencia": 0.0491,
+    "precio_dia_2": 0.0332
+  },
+  "feature_importance_top10_perm": {
+    "precio_dia_6": 0.1073,
+    "precio_mediana": 0.0574,
+    "precio_dia_7": 0.03,
+    "precio_media": 0.0244,
+    "precio_fin": 0.0239,
+    "precio_dia_5": 0.0201,
+    "precio_dia_1": 0.0155,
+    "n_puntos_precio": 0.0096,
+    "precio_inicio": 0.009,
+    "precio_rango": 0.0062
+  },
+  "feature_importance_top10_lrc": {
+    "precio_dia_4": 1.0517,
+    "precio_media": 0.9938,
+    "precio_dia_7": 0.5278,
+    "precio_fin": 0.5278,
+    "precio_dia_6": 0.3895,
+    "cat_Sports": 0.2783,
+    "cat_Crypto": 0.2332,
+    "precio_std": 0.1281,
+    "precio_tendencia": 0.1218,
+    "n_puntos_precio": 0.0802
+  }
+}
