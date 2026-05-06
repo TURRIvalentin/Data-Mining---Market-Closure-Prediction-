@@ -1,0 +1,53 @@
+{
+  "numeric": [
+    "precio_dia_1",
+    "precio_dia_2",
+    "precio_dia_3",
+    "precio_dia_4",
+    "precio_dia_5",
+    "precio_dia_6",
+    "precio_dia_7",
+    "precio_inicio",
+    "precio_fin",
+    "precio_media",
+    "precio_mediana",
+    "precio_std",
+    "precio_rango",
+    "precio_tendencia",
+    "volatilidad_retornos",
+    "n_puntos_precio"
+  ],
+  "binary_onehot": [
+    "cat_Crypto",
+    "cat_Entertainment",
+    "cat_Finance",
+    "cat_Politics",
+    "cat_Sports",
+    "cat_Tech"
+  ],
+  "all_features": [
+    "precio_dia_1",
+    "precio_dia_2",
+    "precio_dia_3",
+    "precio_dia_4",
+    "precio_dia_5",
+    "precio_dia_6",
+    "precio_dia_7",
+    "precio_inicio",
+    "precio_fin",
+    "precio_media",
+    "precio_mediana",
+    "precio_std",
+    "precio_rango",
+    "precio_tendencia",
+    "volatilidad_retornos",
+    "n_puntos_precio",
+    "cat_Crypto",
+    "cat_Entertainment",
+    "cat_Finance",
+    "cat_Politics",
+    "cat_Sports",
+    "cat_Tech"
+  ],
+  "target": "outcome"
+}

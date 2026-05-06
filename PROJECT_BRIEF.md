@@ -27,6 +27,8 @@ Soy estudiante de la Especialización y estoy haciendo el Trabajo Final Integrad
 
 **Predicción temprana del outcome de mercados de predicción en Polymarket: clasificación binaria del resultado final de un mercado a partir de su comportamiento durante los primeros días de operación.**
 
+> **Período de estudio (actualizado en Fase 2):** Q3 2025 – Q2 2026 (período de máxima actividad de Polymarket). El universo accesible de mercados binarios resueltos con ≥30 días de duración se concentra en este intervalo. Ver DECISIONES.md sección 1.
+
 ### Pregunta de investigación principal
 
 ¿Es posible predecir, con accuracy significativamente mejor que la probabilidad implícita inicial del mercado, el outcome final (SÍ/NO) de un mercado binario de Polymarket utilizando únicamente información de sus primeros N días de actividad (precio, volumen, volatilidad, número de traders, etc.)?
@@ -35,8 +37,8 @@ Soy estudiante de la Especialización y estoy haciendo el Trabajo Final Integrad
 
 1. La probabilidad implícita inicial del mercado es un baseline difícil de superar (los mercados de predicción están razonablemente bien calibrados).
 2. La volatilidad temprana del precio aporta información predictiva por encima del precio promedio.
-3. El comportamiento del volumen y el número de traders únicos correlaciona con la confianza del mercado en el outcome.
-4. Distintas categorías (política, deportes, cripto) presentan diferente predictibilidad y requieren posiblemente modelos separados.
+3. El volumen total del mercado (proxy de liquidez) correlaciona con su predictibilidad: mercados de mayor volumen estarán mejor calibrados y serán más fáciles de predecir. *(Hipótesis original: "volumen y número de traders únicos en los primeros 7 días". Revisada en Fase 1 porque esos datos no están disponibles vía API pública sin autenticación — ver DECISIONES.md sección 11.)*
+4. Distintas categorías (política, deportes, cripto) presentan diferente predictibilidad y requieren posiblemente modelos separados. *(Actualización Fase 2: no existe campo `category` en la API; la categoría se deriva heurísticamente del texto de la pregunta — ver DECISIONES.md sección 6.)*
 
 ### Restricciones de alcance (scope)
 

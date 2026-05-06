@@ -1,0 +1,62 @@
+{
+  "train": {
+    "n": 684,
+    "yes": 85,
+    "yes_pct": 12.4,
+    "buckets": {
+      "2026-01": 43,
+      "2026-02": 74,
+      "2026-03+": 460,
+      "pre-2026": 107
+    },
+    "categories": {
+      "Crypto": 29,
+      "Entertainment": 30,
+      "Finance": 265,
+      "Other": 47,
+      "Politics": 122,
+      "Sports": 105,
+      "Tech": 86
+    }
+  },
+  "val": {
+    "n": 76,
+    "yes": 7,
+    "yes_pct": 9.2,
+    "buckets": {
+      "2026-01": 1,
+      "2026-02": 7,
+      "2026-03+": 51,
+      "pre-2026": 17
+    },
+    "categories": {
+      "Crypto": 2,
+      "Entertainment": 2,
+      "Finance": 23,
+      "Other": 2,
+      "Politics": 19,
+      "Sports": 15,
+      "Tech": 13
+    }
+  },
+  "test": {
+    "n": 205,
+    "yes": 23,
+    "yes_pct": 11.2,
+    "buckets": {
+      "2026-01": 11,
+      "2026-02": 27,
+      "2026-03+": 130,
+      "pre-2026": 37
+    },
+    "categories": {
+      "Crypto": 3,
+      "Entertainment": 7,
+      "Finance": 65,
+      "Other": 14,
+      "Politics": 45,
+      "Sports": 42,
+      "Tech": 29
+    }
+  }
+}

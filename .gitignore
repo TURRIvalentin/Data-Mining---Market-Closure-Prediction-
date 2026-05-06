@@ -1,0 +1,36 @@
+# Datos crudos — no van al repo (pueden pesar GBs y contienen snapshots de la API)
+data/raw/
+
+# Entornos virtuales
+venv/
+.venv/
+env/
+.env/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Variables de entorno (credenciales, tokens)
+.env
+.env.local
+
+# IDEs
+.vscode/
+.idea/
+*.code-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Outputs temporales (las figuras finales van en reports/figures/ y SÍ van al repo)
+*.log
