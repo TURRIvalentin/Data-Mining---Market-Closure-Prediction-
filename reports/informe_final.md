@@ -28,7 +28,7 @@ Año 2026
 
 Los mercados de predicción son mecanismos en los que el precio de un contrato binario refleja la probabilidad implícita del colectivo de participantes sobre un evento futuro. Polymarket, la mayor plataforma descentralizada de este tipo, expone sus datos históricos mediante una API pública. El presente trabajo examina si es posible predecir el resultado final (YES o NO) de sus mercados a partir exclusivamente de los precios del token YES observados durante los primeros siete días de vida del mercado.
 
-Se construyó un dataset de 965 mercados binarios resueltos (Q3 2025–Q2 2026), con 22 features por instancia: siete precios diarios, ocho estadísticos de resumen, un contador de puntos de actividad y seis indicadores de categoría temática. La clase positiva (YES) representa el 12,4% del total. Se aplicó un split estratificado por bucket temporal para mitigar el drift intra-mensual detectado en el análisis exploratorio. Se compararon diez configuraciones de modelos: tres baselines de referencia, cinco variantes de regresión logística con regularización L1/L2, Random Forest y Gradient Boosting.
+Se construyó un dataset de 965 mercados binarios resueltos (Q2 2025–Q2 2026), con 22 features por instancia: siete precios diarios, ocho estadísticos de resumen, un contador de puntos de actividad y seis indicadores de categoría temática. La clase positiva (YES) representa el 11,9% del total. Se aplicó un split estratificado por bucket temporal para mitigar el drift intra-mensual detectado en el análisis exploratorio. Se compararon diez configuraciones de modelos: tres baselines de referencia, cinco variantes de regresión logística con regularización L1/L2, Random Forest y Gradient Boosting.
 
 El modelo de mejor rendimiento es Gradient Boosting, con AUC = 0,893 en test, superando al baseline competitivo basado en el precio final (AUC = 0,847) y confirmando que la trayectoria completa es más informativa que el último precio. El umbral ajustado a 0,25 mejora F1(YES) de 0,333 a 0,634. La señal predictiva está concentrada en pocas features: `precio_dia_6` es la más importante en ambos modelos de árbol, fenómeno no capturado por los modelos lineales. Se identifica un trade-off entre discriminación (GB, AUC = 0,893) y calibración probabilística (LR-C, ECE = 0,029), y heterogeneidad significativa por categoría temática.
 
@@ -130,7 +130,7 @@ La recolección se limitó a mercados con las siguientes características: merca
 
 ### 4.2 Estadísticas generales del dataset
 
-El dataset final contiene **965 mercados** con resultado conocido, distribuidos en el período Q3 2025 – Q2 2026. La distribución temporal presenta una concentración pronunciada: el 66% de los mercados corresponde al mes de marzo de 2026 (ver Figura 1), lo que refleja una oleada de creación de mercados en ese período —posiblemente relacionada con eventos políticos y financieros de alta visibilidad.
+El dataset final contiene **965 mercados** con resultado conocido, distribuidos en el período Q2 2025 – Q2 2026. La distribución temporal presenta una concentración pronunciada: el 66% de los mercados corresponde al mes de marzo de 2026 (ver Figura 1), lo que refleja una oleada de creación de mercados en ese período —posiblemente relacionada con eventos políticos y financieros de alta visibilidad.
 
 ![Distribución temporal de mercados](./figures/temporal_distribution.png)
 *Figura 1. Distribución temporal de los 965 mercados por mes de inicio. La concentración en marzo de 2026 es un rasgo estructural del dataset, no un artefacto de muestreo.*
@@ -255,7 +255,7 @@ Este esquema preserva la representación proporcional de cada período en cada p
 
 ### 5.6 Clustering K-means: cuatro perfiles de mercado
 
-Se aplicó K-means sobre el vector normalizado de precios diarios `[precio_dia_1, ..., precio_dia_7]` para identificar perfiles cualitativos de trayectoria de precios. La selección de k = 4 se realizó por criterio combinado de *elbow* en inercia y coeficiente de silueta, ambos evaluados para k ∈ {2, 3, 4, 5, 6, 7} (Figura 9).
+Se aplicó K-means sobre el vector normalizado de precios diarios `[precio_dia_1, ..., precio_dia_7]`, calculados sobre los 965 mercados del dataset completo con imputación forward-fill/backward-fill, para identificar perfiles cualitativos de trayectoria de precios. La selección de k = 4 se realizó por criterio combinado de *elbow* en inercia y coeficiente de silueta, ambos evaluados para k ∈ {2, 3, 4, 5, 6, 7} (Figura 9).
 
 ![Selección de k en K-means](./figures/clustering_elbow_silhouette.png)
 *Figura 9. Criterio de elbow (inercia) y coeficiente de silueta para la selección de k. El punto de quiebre más pronunciado corresponde a k=4, con silueta de 0,31 — aceptable para datos de precio.*
@@ -440,6 +440,8 @@ El análisis de performance del modelo GB (t = 0,25) por categoría temática re
 | Entertainment | 7 | 0,0% | — | — | — | — |
 | Other | 14 | 0,0% | — | — | — | — |
 
+*Nota: Crypto (n=3 en test, ningún YES) se excluye de la tabla por tamaño de muestra insuficiente para calcular métricas confiables. Los 202 mercados mostrados representan el 98,5% del test set (205 total).*
+
 ![Errores por categoría](./figures/errores_por_categoria_gb.png)
 *Figura 20. Métricas de clasificación de GB (t=0,25) por categoría temática. Finance presenta el mejor F1(YES); Sports exhibe AUC alto pero F1 bajo — señal de sensibilidad al umbral.*
 
@@ -563,7 +565,7 @@ Con el split cronológico estricto, el conjunto de validación cubría solo 2 d�
 
 1. **`penalty='l2'` eliminado como parámetro explícito** en `LogisticRegression` para el solver `lbfgs`: L2 es la regularización por defecto y especificarla explícitamente produce `FutureWarning`. Se eliminaron todos los `penalty='l2'` de los modelos LR-A, LR-B y LR-MIN.
 
-2. **`penalty='l1'` con solver `liblinear` deprecado**: la combinación L1 + liblinear que era estándar hasta la versión 1.4 fue reemplazada por L1 + `l1_ratio=1.0` + solver `saga`. El cambio inesperadamente mejoró los resultados de LR-C: AUC pasó de 0,8217 (liblinear) a 0,8339 (saga), presumiblemente por la mayor capacidad del solver SAGA para explorar el espacio de parámetros con regularización L1 estricta.
+2. **`penalty='l1'` con solver `liblinear` deprecado**: la combinación L1 + liblinear que era estándar hasta la versión 1.4 fue reemplazada por L1 + `l1_ratio=1.0` + solver `saga`. El cambio mejoró los resultados de LR-C de forma apreciable, presumiblemente por la mayor capacidad del solver SAGA para explorar el espacio de parámetros con regularización L1 estricta.
 
 3. **`C=np.inf` produce advertencia** cuando se combina con `penalty=None`: se sustituyó por `C=1e4` en los modelos sin regularización efectiva (LR-A, LR-MIN).
 
@@ -748,8 +750,8 @@ La Tabla 2 presenta los resultados completos del modelo campeón (GB con t = 0,2
 | Brier Score | 0,118 | 0,072 | **0,068** | — |
 | ECE | 0,184 | **0,029** | 0,061 | — |
 | F1(YES) | 0,462 | 0,500 | 0,333 | **0,634** |
-| Precisión(YES) | 0,462 | 0,650 | 0,714 | **0,722** |
-| Recall(YES) | 0,462 | 0,391 | 0,217 | 0,565 |
+| Precisión(YES) | 0,357 | 0,889 | 0,714 | **0,722** |
+| Recall(YES) | 0,652 | 0,348 | 0,217 | 0,565 |
 | Accuracy | 0,829 | 0,922 | 0,902 | 0,927 |
 
 La matriz de confusión del modelo final (GB, t = 0,25) sobre el test set es:
@@ -894,9 +896,9 @@ Wolfers, J., & Zitzewitz, E. (2004). Prediction markets. *Journal of Economic Pe
 | LR-D: L1 balanceada | 0,807 | 0,539 | 0,487 | 0,160 | 0,776 | 0,395 | 0,862 | 9 | 41 | 14 | 141 |
 | LR-A: 22f sin reg. | 0,816 | 0,545 | 0,263 | 0,074 | 0,902 | 0,474 | 0,946 | 9 | 10 | 14 | 172 |
 | LR-MIN: 4f | 0,825 | 0,568 | 0,261 | 0,073 | 0,902 | 0,444 | 0,947 | 8 | 10 | 15 | 172 |
-| LR-C: L1 C=0,5 | 0,834 | 0,582 | 0,255 | 0,072 | 0,922 | 0,500 | 0,958 | 9 | 9 | 14 | 173 |
-| B3: precio_fin | 0,847 | 0,603 | 0,370 | 0,118 | 0,829 | 0,462 | 0,899 | 12 | 14 | 11 | 168 |
-| RF | 0,888 | 0,634 | 0,341 | 0,100 | 0,902 | 0,583 | 0,945 | 14 | 10 | 9 | 172 |
+| LR-C: L1 C=0,5 | 0,834 | 0,582 | 0,255 | 0,072 | 0,922 | 0,500 | 0,958 | 8 | 1 | 15 | 181 |
+| B3: precio_fin | 0,847 | 0,603 | 0,370 | 0,118 | 0,829 | 0,462 | 0,899 | 15 | 27 | 8 | 155 |
+| RF | 0,888 | 0,634 | 0,341 | 0,100 | 0,902 | 0,583 | 0,945 | 14 | 11 | 9 | 171 |
 | GB (t=0,50) | 0,893 | 0,635 | 0,244 | 0,068 | 0,902 | 0,333 | 0,947 | 5 | 2 | 18 | 180 |
 | **GB† (t=0,25)** | **0,893** | **0,635** | — | — | **0,927** | **0,634** | — | **13** | **5** | **10** | **177** |
 
