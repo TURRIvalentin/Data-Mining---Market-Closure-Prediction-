@@ -1007,4 +1007,5 @@ En LR-MIN, el único coeficiente con interpretación directa es el de `precio_fi
 | `models/best_tree_model.pkl` | Modelo campeón GB serializado |
 | `data/processed/scaler.pkl` | StandardScaler ajustado sobre train |
 | `reports/fase7_analysis.json` | Resultados numéricos completos de Fase 7 |
-| `notebooks/05_analisis_resultados.ipynb` | Análisis completo ejecutado con figuras embebidas |
+| `notebooks/02_eda.ipynb` | EDA completo ejecutado con figuras embebidas |
+| `notebooks/05_analisis_resultados.ipynb` | Análisis post-entrenamiento (Fase 7) ejecutado con figuras embebidas |
