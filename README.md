@@ -2,6 +2,8 @@
 
 Trabajo Final Integrador — Especialización en Explotación de Datos y Descubrimiento del Conocimiento (UBA)
 
+[![Dashboard](https://img.shields.io/badge/Dashboard-polymarket--scorer.streamlit.app-ff4b4b?logo=streamlit)](https://polymarket-scorer.streamlit.app)
+
 ## Pregunta de investigación
 
 ¿Es posible predecir el outcome final (SÍ/NO) de un mercado binario de Polymarket con accuracy significativamente mejor que la probabilidad implícita del mercado, utilizando únicamente información de sus primeros 7 días de actividad?
