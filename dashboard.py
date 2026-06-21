@@ -37,10 +37,10 @@ def run_scorer(top: int = 200):
             capture_output=True, text=True
         )
     if result.returncode != 0:
-        st.error(f"Error en scorer:\n{result.stderr[-500:]}")
+        st.session_state["scorer_error"] = result.stderr[-2000:]
     else:
-        st.success("Scoring completado.")
-    st.rerun()
+        st.session_state.pop("scorer_error", None)
+        st.rerun()
 
 
 @st.cache_data(ttl=300)
@@ -88,6 +88,9 @@ def fetch_price_history(condition_id: str) -> pd.DataFrame:
 
 # ── Layout ────────────────────────────────────────────────────────────────────
 st.title("📊 Polymarket — Scorer de mercados")
+
+if "scorer_error" in st.session_state:
+    st.error(f"Error al ejecutar scorer:\n```\n{st.session_state['scorer_error']}\n```")
 
 # Sidebar
 with st.sidebar:
