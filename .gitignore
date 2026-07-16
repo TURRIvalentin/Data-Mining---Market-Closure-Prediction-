@@ -36,6 +36,5 @@ Thumbs.db
 *.log
 
 # Ajenos a este proyecto / generados
-CONTEXT.md
 polymarket-bot/
 scoring_output.csv
