@@ -34,3 +34,8 @@ Thumbs.db
 
 # Outputs temporales (las figuras finales van en reports/figures/ y SÍ van al repo)
 *.log
+
+# Ajenos a este proyecto / generados
+CONTEXT.md
+polymarket-bot/
+scoring_output.csv
